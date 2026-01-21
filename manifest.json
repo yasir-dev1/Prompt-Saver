@@ -3,11 +3,7 @@
   "name": "Prompt Saver",
   "version": "0.0.5",
   "description": "Save your AI prompts and access them quickly.",
-  
-  "icons": {
-    "48": "icon-48.svg",
-    "128": "icon.svg"
-  },
+
  
   "action": {
     "default_popup": "popup/popup.html",
