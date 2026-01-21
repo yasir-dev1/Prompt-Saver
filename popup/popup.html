@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Prompts</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <div class="appbar">
+    <img src="bookmark.svg" alt="icon" class="app-icon">
+    <div class="appbar-title">MY PROMPTS</div>
+    <button class="add-btn" id="addPromptBtn">+</button>
+  </div>
+
+  <div class="content" id="categoriesContainer">
+    <!-- Categories injected by JS -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-state-message">No prompts found</div>
+    </div>
+  </div>
+
+  <!-- Add Prompt Modal -->
+  <div id="addPromptModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add Prompt</h2>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="manual">Manual</button>
+        <button class="tab-btn" data-tab="csv">CSV Upload</button>
+      </div>
+
+      <!-- Manual Tab -->
+      <div id="manual" class="tab-content active">
+        <form id="manualForm">
+          <div class="form-group">
+            <label for="promptTitle">Title:</label>
+            <input type="text" id="promptTitle" placeholder="e.g., Write Email" required>
+          </div>
+          <div class="form-group">
+            <label for="promptText">Prompt:</label>
+            <textarea id="promptText" placeholder="Enter your prompt here..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="promptCategory">Category:</label>
+            <div class="category-input-group">
+              <select id="promptCategory">
+                <option value="">Select or create category</option>
+              </select>
+              <input type="text" id="newCategoryInput" placeholder="New category..." style="display: none;">
+            </div>
+          </div>
+          <button type="submit" class="submit-btn">Add Prompt</button>
+        </form>
+      </div>
+
+      <!-- CSV Tab -->
+      <div id="csv" class="tab-content">
+        <div class="csv-info">
+          <p>Upload a CSV file with columns: <code>title,prompt,category</code></p>
+        </div>
+        <input type="file" id="csvFile" accept=".csv" class="file-input">
+        <button class="submit-btn" id="uploadCsvBtn">Upload CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,24 +1,20 @@
 {
   "manifest_version": 3,
   "name": "Prompt Saver",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Save your AI prompts and access them quickly.",
+  
+  "icons": {
+    "48": "icon-48.svg",
+    "128": "icon.svg"
+  },
  
   "action": {
-    "default_popup": "popup.html"
-  },
-
-  "options_ui": {
-    "page": "settings.html",
-    "open_in_tab": true
+    "default_popup": "popup/popup.html",
+    "default_title": "Prompt Saver - Save your AI prompts"
   },
 
   "permissions": [
     "storage"
-  ],
-
-  "background": {
-    "service_worker": "background.js"
-  }
-
+  ]
 }

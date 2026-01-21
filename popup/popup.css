@@ -1,0 +1,383 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    width: 380px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background: #f5f6fa;
+}
+
+/* AppBar */
+.appbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #4f46e5;
+    color: #fff;
+    padding: 10px 12px;
+    gap: 8px;
+}
+
+.app-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.appbar-title {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.add-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 8px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty-state {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #999;
+}
+
+.empty-state-message {
+    font-size: 14px;
+    color: #999;
+    font-weight: 500;
+}
+
+/* Category Accordion */
+.category {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    background: #fafafa;
+}
+
+.category-header:hover {
+    background: #f0f0ff;
+}
+
+.arrow {
+    transition: transform 0.2s ease;
+}
+
+.category.open .arrow {
+    transform: rotate(90deg);
+}
+
+.prompts {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    border-top: 1px solid #eee;
+}
+
+.category.open .prompts {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.prompts::-webkit-scrollbar {
+    width: 6px;
+}
+
+.prompts::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.prompts::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.prompts::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+.prompt-item {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    cursor: pointer;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.prompt-title {
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prompt-content {
+    color: #666;
+    font-size: 12px;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.prompt-item:last-child {
+    border-bottom: none;
+}
+
+.prompt-item:hover {
+    background: #f0f0ff;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 8px;
+    width: 95%;
+    max-width: 380px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #4f46e5;
+    color: #fff;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    opacity: 0.8;
+}
+
+.modal-tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+}
+
+.tab-btn:hover {
+    background: #f0f0f0;
+}
+
+.tab-content {
+    display: none;
+    padding: 12px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+.category-input-group {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+#promptCategory,
+#newCategoryInput {
+    flex: 1;
+}
+
+#promptCategory {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    cursor: pointer;
+}
+
+#promptCategory:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+#newCategoryInput {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+#newCategoryInput:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}.file-input {
+    margin-bottom: 12px;
+}
+
+.csv-info {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: #f0f0ff;
+    border-radius: 4px;
+}
+
+.csv-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+.csv-info code {
+    background: #fff;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: monospace;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 8px;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #4338ca;
+}
+
+.submit-btn:active {
+    background: #3730a3;
+}
